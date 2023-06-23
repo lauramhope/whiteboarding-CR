@@ -1,0 +1,65 @@
+Question #2: Array Deduping
+Write an algorithm that removes duplicates from an array. Do not use a function like filter() to solve this. Once you have solved the problem, demonstrate how it can be solved with filter(). Solve the problem with and without recursion.
+
+Example
+Input: [7, 9, "hi", 12, "hi", 7, 53]
+
+Output: [7, 9, "hi", 12, 53]
+
+Questions for edge cases:
+1. What if the array is empty?
+2. What if the array contains only one element?
+3. What if the array contains only duplicates?
+4. What if the array contains only unique elements?
+
+Pseudocode:
+1. Create a function that takes array as arg
+2. Loop through each element of the array to find duplicates
+3. Use a method to remove duplicates
+4. Push all unique elements into a new array
+5. Return new array
+
+function removeDuplicates(array) {
+  let newArray = []; // intialize new array
+  for (let i = 0; i < array.length; i++) {
+    if (!newArray.includes(array[i])) {
+      newArray.push(array[i]);
+    }
+  }
+  return newArray;
+}
+
+// loops through each element of the array using for loop
+// checks if current element array[i] is already present in the newArray using includes() method
+// if not, it pushes the element to the newArray
+// once the loop has iterated through all of the elements in the array, it returns the newArray with only the unique elements
+
+function removeDuplicatesUsingFilter(array) {
+  return array.filter((element, index) => array.indexOf(element) === index);
+}
+
+// uses filter() method to filter out the elements that are not unique
+// filter() method takes in a callback function that takes in 2 parameters: element and index (element = current element being processed, index = index of the current element)
+// the callback function checks if the index of the current element is the same as the index of the first occurence of the element in the array
+// if it is, it returns true and the element is added to the new array
+// if it is not, it returns false and the element is not added to the new array
+// the function implicitly returns the new array
+
+function removeDuplicatesRecursion (array) {
+  if (array.length === 0) {
+    return [];
+  }
+  let newArray = [];
+  if (!newArray.includes(array[0])) {
+    newArray.push(array[0]);
+  }
+  newArray = newArray.concat(removeDuplicatesRecursion(array.slice(1)));
+  return newArray;
+}
+
+// base case: if the array is empty, return an empty array - the stopping condition for the recursive function
+// if the array is not empty, it will initialize a new array
+// it checks if the first element of the array at index 0 is not already included in the newArray -- if it's NOT included, it pushes the element to the newArray using the push method
+// it recursively calls the function on the remaining elements of the array by passing array.slice(1) as the argument -- this processes through the rest of the array and will return a new array without duplicate elements 
+// it concatenates the newArray with the result of the recursive call using the concat method - combining unique elements from the current array with the unique elements from the rest of the array
+// returns the new array

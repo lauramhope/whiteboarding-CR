@@ -1,0 +1,83 @@
+// Question #3: Compressing Strings
+// Write an algorithm that takes a string with repeated characters and compresses them, using a number to show how many times the repeated character has been compressed. For instance, aaa would be written as 3a. Solve the problem with and without recursion.
+
+// Example
+// Input: "aaabccdddda"
+
+// Output: "3ab2c4da"
+
+// Questions for Edge Cases:
+// What if the string is empty?
+// What if the string has multiple spaces?
+// What about special characters?
+// What if the string has a mix of upper and lower case characters?
+
+// Pseudocode:
+// 1. Create a function that takes in a string and removes any spaces
+// 2. Create a variable to hold the current character
+// 3. Create a variable to hold the current count
+// 5. Loop through the string and compare the current character to the previous character
+// 6. If the current character is the same as the previous character then increment the count
+// 7. If the current character is not the same as the previous character then add the count and the character to the compressed string
+// 8. Reset the count to 1
+// 9. Set the current character to the previous character
+// 10. If the current character is the last character in the string then add the count and the character to the compressed string
+// 11. Return the compressed string
+
+function compressString (string) {
+  string = string.toLowerCase();
+  let compressedString = '';
+
+  for (let i = 0; i < string.length; i++) {
+    let count = 1;
+
+    while (string[i] === string [i + 1]) {
+      count++;
+      i++;
+    }
+
+    compressedString += count + string[i];
+  }
+  return compressedString;
+}
+// fxn takes string as arg and initializes empty string in compressedString variable
+// for loop iterates through each character of the string, starting at index 0 and continues until the end of the string
+// inside the loop, a count variable is initialized to 1 - this variable keeps track of the number of consecutive occurrences of a character 
+// while loop is used to check if the current character is the same as the next character in the string -- if the same, means there is a consecutive occurrence of the character and count is incremented by 1
+// once the consecutive occurrences of a character end, the while loop exits and the count and character are appended to the compressedString variable
+// the for loop continues through each character until all of the characters have been processed
+// once the for loop exits, the compressedString is returned
+
+// Recursive Solution
+function compressStringRecursive (string) {
+  string = string.toLowerCase();
+  let compressedString = '';
+  let count = 1;
+
+  function recurse (i) {
+    if (i === string.length) {
+      return compressedString;
+    }
+
+    if (string[i] === string[i + 1]) {
+      count++;
+    } else {
+      compressedString += count + string[i];
+      count = 1;
+    }
+
+    return recurse(i + 1);
+  }
+
+  return recurse(0);
+}
+
+// fxn takes string as arg and initializes empty string in compressedString variable
+// two variables are declared - compressedString to store the compressed string and count to keep track of the consecutive occurrences of a character
+// function defines an inner recursive function called recurse that takes an index i as parameter -- represents the current position in the string during the recursion
+// base case: if the index i is equal to the length of the string, then the recursion is complete and the compressedString is returned
+// inside the recursive function - the code checks if the current character string[i] is the same as the next character string[i + 1] --- if yes, it means there is a consecutive occurrence of the same character - count is incremented by 1
+// if not, it means the consecutive occurrences of the character have ended and the count and character are appended to the compressedString variable and count is reset to 1 for the next sequence
+// the recursive function is called with the next index i + 1 as the argument to process the next character in the string
+// the recursion starts by calling recurse(0) to initiate the compression process from the beginning of the string
+// the compressed string is returned as the result of the function 

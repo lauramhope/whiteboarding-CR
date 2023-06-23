@@ -1,0 +1,51 @@
+// Question #4: Checking for Uniqueness
+// Write an algorithm that determines whether all the elements in a string are unique. You may not convert the string into an array or use array methods to solve this problem. The algorithm should return a boolean.
+
+// Example
+// Input: "hello"
+
+// Output: false
+
+// Input: "copyright"
+
+// Output: true
+
+// Questions for edge cases:
+// 1. What if the string is empty?
+// 2. What if the string is a number?
+// 3. What if the string is a special character?
+// 4. What if the string is a mix of numbers, special characters, and letters?
+
+// Pseudocode:
+// 1. Create a function that takes in a string as an argument
+// 2. Create a variable that will hold the string
+// 3. Create a variable that will hold the string length
+// 4. Create a for loop that will iterate through the string
+// 5. Create a conditional statement that will check if the string is empty
+// 6. If not empty, loop through the string and check if each character is unique
+// 7. If unique, return true
+// 8. If not unique, return false
+
+function checkUnique (string) {
+  if (string === "") {
+    return false;
+  }
+  const charObj = {}; 
+  for (let i = 0; i < string.length; i++) {
+    const char = string[i].toLowerCase();
+
+    if (charObj[char]) {
+      return false;
+    }
+    charObj[char] = true;
+  }
+  return true;
+}
+// function takes string as an argument - returns false if string is empty
+// create an empty object to hold the characters
+// for loop to iterate through the string
+// create a variable to hold the characters and make them lowercase
+// if the character is already in the object, return false
+// if the character is not in the object, add it to the object
+// return true if all characters are unique
+

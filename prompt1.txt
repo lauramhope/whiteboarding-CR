@@ -1,0 +1,40 @@
+Question #1: Turning Strings to URLs
+URLs cannot have spaces. Instead, all spaces in a string are replaced with %20. Write an algorithm that replaces all spaces in a string with %20.
+You may not use the replace() method or regular expressions to solve this problem. Solve the problem with and without recursion.
+
+Input: "Jasmine Ann Jones"
+Output: "Jasmine%20Ann%20Jones"
+
+Questions for edge cases:
+What if the string is empty?
+What if the string is only spaces?
+What if the string is only one character?
+What if the string is only spaces and one character?
+
+Pseudocode:
+1. Create a function that takes string as arg
+2. Split the string wherever there is a space
+3. Use a method to replace the spaces with %20
+4. return the new string
+
+// function without recursion
+function turnStringToURL (string) {
+  let newString = string.split(' ').join('%20');
+  return newString;
+}
+
+// function with recursion
+function stringToURLRecursion (string) {
+  if (string.length === 0) {
+    return '';
+  } else if (string[0] === " ") {
+    return "%20" + stringToURLRecursion(string.slice(1));
+  } else {
+    return string[0] + stringToURLRecursion(string.slice(1));
+  }
+}
+
+* the function takes a string as an argument
+* first branch is the base case - if the string is empty it will return the empty string
+* next branch checks if the first character of the string is a space (string at index 0) - if yes, it will * append %20 and call the function again with the remaining substring starting from index 1 (via the slice(1) method - 1 is the start index - does not modify the original string, just returns a new string that represents the extracted portion)
+* recursive calls continue until the base case is reached (empty string) - each recursive call processes one character at a time replacing spaces with %20 until the base case is reached
