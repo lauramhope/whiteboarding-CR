@@ -3,7 +3,6 @@ Write an algorithm that removes duplicates from an array. Do not use a function 
 
 Example
 Input: [7, 9, "hi", 12, "hi", 7, 53]
-
 Output: [7, 9, "hi", 12, 53]
 
 Questions for edge cases:
@@ -20,7 +19,7 @@ Pseudocode:
 5. Return new array
 
 function removeDuplicates(array) {
-  let newArray = []; // intialize new array
+  let newArray = []; 
   for (let i = 0; i < array.length; i++) {
     if (!newArray.includes(array[i])) {
       newArray.push(array[i]);

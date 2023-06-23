@@ -35,7 +35,6 @@ function compressString (string) {
       count++;
       i++;
     }
-
     compressedString += count + string[i];
   }
   return compressedString;

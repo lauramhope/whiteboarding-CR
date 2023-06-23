@@ -3,11 +3,8 @@
 
 // Example
 // Input: "hello"
-
 // Output: false
-
 // Input: "copyright"
-
 // Output: true
 
 // Questions for edge cases:

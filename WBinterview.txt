@@ -1,0 +1,38 @@
+-3 functions
+-return empty array
+-return 1 element
+-return unique elements
+-no reordering, just removing duplicates
+
+pseudo:
+1. create function taking an array as arg
+2. loop through each element of the array to find duplicates
+3. use method to remove duplicates
+4. push unique elements into new array
+5. return the newArray
+
+function removeDuplicates(array) {
+	let newArray = [];
+  for (let i = 0; i < array.length; i++){
+	if (!newArray.includes(array[i])) {
+  	newArray.push(array[i]);
+		}
+  }
+  return newArray; 
+}
+
+function removeDuplicatesFilter (array) {
+	return array.filter((element, index) => array.indexOf(element) === index); 
+}
+
+function removeDuplicatesRecursion (array) {
+	if (array.length === 0) {
+		return []; 
+  }
+  let newArray = []; 
+  if (!newArray.includes(array[0])) {
+	newArray.push(array[0]);
+  }
+  newArray = newArray.concat(removeDuplicatesRecurision(array.slice(1)));
+  return newArray; 
+}

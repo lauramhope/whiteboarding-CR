@@ -11,7 +11,6 @@ You may implement any of the above algorithms (or your own) to solve the problem
 
 // Example
 // Input: [9, 2, 7, 12]
-
 // Output: [2, 7, 9, 12]
 
 // Questions for edge cases:
